@@ -1,12 +1,26 @@
 const express = require('express');
+require('dotenv').config();
+const cors = require('cors');
+const plantRouter = require('./routes/plant');
+const categoryRouter = require('./routes/category');
 
 const app = express();
+app.use(express.json());
+
+const PORT = process.env.PORT || 8000;
+
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+  })
+);
 
 app.get('/', function (req, res) {
   res.send('Hello World');
 });
 
-const PORT = process.env.PORT || 8000;
+app.use('/plant', plantRouter);
+app.use('/category', categoryRouter);
 
 app.listen(PORT, (err) => {
   if (err) {
