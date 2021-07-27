@@ -16,16 +16,6 @@ router.get('/', function (request, response) {
   );
 });
 
-router.get('/', function (request, response) {
-  pool.query('SELECT * FROM specimen', (error, results) => {
-    if (error) {
-      response.status(500).send(error);
-    } else {
-      response.send(results);
-    }
-  });
-});
-
 router.post('/', (request, response) => {
   const plant = request.body;
   pool.query(
