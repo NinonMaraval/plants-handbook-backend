@@ -7,13 +7,9 @@ const categoryRouter = require('./routes/category');
 const app = express();
 app.use(express.json());
 
-const PORT = process.env.PORT || 8000;
+app.use(cors());
 
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL,
-  })
-);
+const PORT = process.env.PORT || 8000;
 
 // eslint-disable-next-line consistent-return
 app.use((req, res, next) => {
@@ -29,7 +25,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
