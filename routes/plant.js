@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../config/mysql');
 
-router.get('/', function (request, response) {
+router.get('/', (request, response) => {
   pool.query(
     'SELECT specimen.*, category.name FROM specimen JOIN category ON specimen.category_id WHERE specimen.category_id=category.id;',
     (error, results) => {
